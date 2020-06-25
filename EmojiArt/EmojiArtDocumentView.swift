@@ -108,7 +108,9 @@ struct EmojiArtDocumentView: View {
                         location = CGPoint(x: location.x / self.zoomScale, y: location.y / self.zoomScale)
                         return self.drop(providers: providers, at: location)
                 }
-                .navigationBarItems(trailing: Button(action: {
+                    
+                // self.pickImage leading sets up a UIViewController
+                    .navigationBarItems(leading: self.pickImage, trailing: Button(action: {
                     /// Uses past to ad a background url/image. Needed as iPhones don't have drag.
                     
                     // UIPasteboard.general is the shared pasteboard on the device, returns nil if empty.
@@ -151,7 +153,51 @@ struct EmojiArtDocumentView: View {
                 secondaryButton: .cancel()
             )
         }
-        
+    }
+    
+    
+    @State private var showImagePicker = false
+    
+    // Will determine if the user is choosing from the image library or the camera.
+    @State private var imagePickerSourceType = UIImagePickerController.SourceType.photoLibrary
+    
+    // The UIViewController link.
+    private var pickImage: some View {
+        HStack {
+            Image(systemName: "photo")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+                .onTapGesture {
+                    self.imagePickerSourceType = .photoLibrary
+                    self.showImagePicker = true
+                }
+            // Cant use the camera in the simulator as it doesn't have one, will crash your app. Ask for one first.
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                Image(systemName: "Camera")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+                    .onTapGesture {
+                        self.imagePickerSourceType = .camera
+                        self.showImagePicker = true
+                    }
+            }
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(sourceType: self.imagePickerSourceType) { image in
+                if image != nil {
+                    
+                    // Will through the image into the filesystem and get the url for it.
+                    // Wouldn't use this in production as it would tie it to this device.
+                    // storeInFilesystem() is in EmojiArtExtensions.
+                    // DispatchQueue.main.async is nothing to do with multithreading, it's just to but it on the main queue, do it after the other stuff,
+                    // pretty much just delays it, safety buffer, its a user intent. E.g. could be used for the selection of Airports in Enroute also.
+                    DispatchQueue.main.async {
+                        self.document.backgroundURL = image!.storeInFilesystem()
+                    }
+                }
+                self.showImagePicker = false
+            }
+        }
     }
     
     // To see if alert is showing.

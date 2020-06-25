@@ -33,6 +33,17 @@ extension Data {
 
 extension URL {
     var imageURL: URL {
+        // check to see if this is a local url
+        // if so, be sure to look this instance's Application Support Directory
+        // Application Support Directory changes from launch to launch, maybe only in development?
+        if isFileURL {
+            var url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            url = url?.appendingPathComponent(self.lastPathComponent)
+            if url != nil {
+                return url!
+            }
+        }
+        
         // check to see if there is an embedded imgurl reference
         for query in query?.components(separatedBy: "&") ?? [] {
             let queryComponents = query.components(separatedBy: "=")

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C612CA9524A46C4F0007ADB8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612CA9424A46C4F0007ADB8 /* ImagePicker.swift */; };
 		C636C056249874EC00799042 /* Spinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636C055249874EC00799042 /* Spinning.swift */; };
 		C636C0582498813C00799042 /* PaletteChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636C0572498813C00799042 /* PaletteChooser.swift */; };
 		C636C05A249883BE00799042 /* EmojiArtDocument+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636C059249883BE00799042 /* EmojiArtDocument+Palette.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C612CA9424A46C4F0007ADB8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C636C055249874EC00799042 /* Spinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinning.swift; sourceTree = "<group>"; };
 		C636C0572498813C00799042 /* PaletteChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteChooser.swift; sourceTree = "<group>"; };
 		C636C059249883BE00799042 /* EmojiArtDocument+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EmojiArtDocument+Palette.swift"; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				C67FED28248F35C2004C615E /* EmojiArtDocumentView.swift */,
+				C612CA9424A46C4F0007ADB8 /* ImagePicker.swift */,
 				C64F558F2499D2B20057A245 /* EmojiArtDocumentChooser.swift */,
 				C67FED44248F7BCE004C615E /* OptionalImage.swift */,
 				C636C055249874EC00799042 /* Spinning.swift */,
@@ -220,6 +223,7 @@
 				C636C05A249883BE00799042 /* EmojiArtDocument+Palette.swift in Sources */,
 				C67FED25248F35C2004C615E /* AppDelegate.swift in Sources */,
 				C67FED27248F35C2004C615E /* SceneDelegate.swift in Sources */,
+				C612CA9524A46C4F0007ADB8 /* ImagePicker.swift in Sources */,
 				C67FED41248F43CE004C615E /* EmojiArtExtensions.swift in Sources */,
 				C668E7F4248F8DCB001B92B6 /* EmojiArtDocument.swift in Sources */,
 				C67FED3F248F3CD3004C615E /* EmojiArt.swift in Sources */,

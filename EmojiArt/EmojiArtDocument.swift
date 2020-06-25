@@ -155,7 +155,8 @@ class EmojiArtDocument: ObservableObject, Hashable, Identifiable {
         // sets to nil to give feedback to the user that a new image is being fetched/set. This might take time.
         backgroundImage = nil
         // if let so it only does something if it's not nil; actually contains something.
-        if let url = self.emojiArt.backgroundURL {
+        // ?.imageURL to make sure file url is properly set, see comments in emojiArtExtensions for imageURL.
+        if let url = self.emojiArt.backgroundURL?.imageURL {
             
             // Cancels the current subscription.
             fetchedImageCancellable?.cancel()
